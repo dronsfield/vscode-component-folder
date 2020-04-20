@@ -15,7 +15,7 @@ export function activate(context: vscode.ExtensionContext) {
       'vscode-component-folder.convertFileToFolder',
       async (args) => {
         const path: string = args.fsPath
-        const output = convertFileToFolder({ path })
+        const output = convertFileToFolder({ path, deleteFile: true })
         await showFile(output.paths.mainFile)
       }
     ),

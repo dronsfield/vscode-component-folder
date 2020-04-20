@@ -18,6 +18,22 @@ export function activate(context: vscode.ExtensionContext) {
         const output = convertFileToFolder({ path })
         await showFile(output.paths.mainFile)
       }
+    ),
+    vscode.commands.registerCommand(
+      'vscode-component-folder.createFolderInFolder',
+      async (args) => {
+        const path: string = args.fsPath
+        const name = await vscode.window.showInputBox({
+          placeHolder: 'Name (of component/folder)'
+        })
+        if (!name) return
+        const ext = await vscode.window.showInputBox({
+          placeHolder: 'File extension (eg: tsx, ts, jsx, js)'
+        })
+        if (!ext) return
+        const output = createComponentFolder({ path, name, ext })
+        await showFile(output.paths.mainFile)
+      }
     )
   ]
 

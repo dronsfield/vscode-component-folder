@@ -1,25 +1,55 @@
 {
 	"name": "vscode-component-folder",
-	"displayName": "vscode-component-folder",
-	"description": "Easily create the folder structure of your components with tests",
+	"displayName": "Component Folder",
+	"description": "Easily create the folder structure of your components - including tests",
 	"version": "0.0.1",
 	"engines": {
-		"vscode": "^1.44.0"
+		"vscode": "^1.41.0"
 	},
 	"categories": [
 		"Other"
 	],
 	"activationEvents": [
-		"onCommand:vscode-component-folder.helloWorld"
+		"onCommand:vscode-component-folder.convertFileToFolder",
+		"onCommand:vscode-component-folder.createFolderInFolder",
+		"onCommand:vscode-component-folder.createFolder"
 	],
 	"main": "./out/extension.js",
 	"contributes": {
 		"commands": [
-			{
-				"command": "vscode-component-folder.helloWorld",
-				"title": "Hello World"
-			}
-		]
+      {
+        "command": "vscode-component-folder.convertFileToFolder",
+        "title": "Convert To Component Folder"
+      },
+      {
+        "command": "vscode-component-folder.createFolderInFolder",
+        "title": "New Component Folder"
+      }
+    ],
+		"menus": {
+      "explorer/context": [
+        {
+          "when": "resourceLangId == javascript || resourceLangId = javascriptreact || resourceLangId === typescript || resourceLangId === typescriptreact",
+          "command": "vscode-component-folder.convertFileToFolder",
+          "group": "7_modification"
+        },
+        {
+          "when": "explorerResourceIsFolder",
+          "command": "vscode-component-folder.createFolderInFolder",
+          "group": "navigation"
+        }
+			],
+			"commandPalette": [
+				{
+					"command": "vscode-component-folder.convertFileToFolder",
+					"when": "false"
+				},
+				{
+					"command": "vscode-component-folder.createFolderInFolder",
+					"when": "false"
+				}
+			]
+    }
 	},
 	"scripts": {
 		"vscode:prepublish": "npm run compile",
@@ -41,5 +71,8 @@
 		"mocha": "^7.1.1",
 		"typescript": "^3.8.3",
 		"vscode-test": "^1.3.0"
+	},
+	"dependencies": {
+		"file-structurer": "0.0.1"
 	}
 }

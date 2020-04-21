@@ -4,15 +4,15 @@
 	"description": "Easily create the folder structure of your components - including tests",
 	"publisher": "dronz",
 	"repository": {
-    "type": "git",
-    "url": "https://github.com/dronsfield/vscode-component-folder.git"
+		"type": "git",
+		"url": "https://github.com/dronsfield/vscode-component-folder.git"
 	},
 	"icon": "images/icon128.png",
 	"galleryBanner": {
-    "color": "#000",
-    "theme": "dark"
-  },
-	"version": "0.0.1",
+		"color": "#000",
+		"theme": "dark"
+	},
+	"version": "0.0.2",
 	"engines": {
 		"vscode": "^1.41.0"
 	},

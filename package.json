@@ -2,6 +2,11 @@
 	"name": "vscode-component-folder",
 	"displayName": "Component Folder",
 	"description": "Easily create the folder structure of your components - including tests",
+	"publisher": "dronz",
+	"repository": {
+    "type": "git",
+    "url": "https://github.com/dronsfield/vscode-component-folder.git"
+  },
 	"version": "0.0.1",
 	"engines": {
 		"vscode": "^1.41.0"
@@ -60,7 +65,7 @@
 		"test": "node ./out/test/runTest.js"
 	},
 	"devDependencies": {
-		"@types/vscode": "^1.44.0",
+		"@types/vscode": "^1.41.0",
 		"@types/glob": "^7.1.1",
 		"@types/mocha": "^7.0.2",
 		"@types/node": "^13.11.0",

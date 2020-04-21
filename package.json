@@ -6,6 +6,11 @@
 	"repository": {
     "type": "git",
     "url": "https://github.com/dronsfield/vscode-component-folder.git"
+	},
+	"icon": "images/icon128.png",
+	"galleryBanner": {
+    "color": "#000",
+    "theme": "dark"
   },
 	"version": "0.0.1",
 	"engines": {

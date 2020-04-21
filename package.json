@@ -29,7 +29,7 @@
 		"menus": {
       "explorer/context": [
         {
-          "when": "resourceLangId == javascript || resourceLangId = javascriptreact || resourceLangId === typescript || resourceLangId === typescriptreact",
+          "when": "resourceLangId == javascript || resourceLangId == javascriptreact || resourceLangId == typescript || resourceLangId == typescriptreact",
           "command": "vscode-component-folder.convertFileToFolder",
           "group": "7_modification"
         },

@@ -59,6 +59,23 @@
 					"when": "false"
 				}
 			]
+		},
+		"configuration": {
+			"title": "Component Folder",
+			"properties": {
+				"componentFolder.templates": {
+					"type": "object",
+					"description": "Specifies custom file names and templates for component folder output"
+				},
+				"componentFolder.mainFile": {
+					"type": "string",
+					"description": "Main file name (should match a key from 'componentFolder.templates' config, if exists)"
+				},
+				"componentFolder.fileExt": {
+					"type": "string",
+					"description": "File extension to use for new component folders (when this is set you won't be prompted for file extension)"
+				}
+			}
 		}
 	},
 	"scripts": {
@@ -83,6 +100,6 @@
 		"vscode-test": "^1.3.0"
 	},
 	"dependencies": {
-		"file-structurer": "0.0.2"
+		"file-structurer": "0.0.3"
 	}
 }

@@ -23,15 +23,30 @@ export function activate(context: vscode.ExtensionContext) {
       'vscode-component-folder.createFolderInFolder',
       async (args) => {
         const path: string = args.fsPath
+
+        const config = vscode.workspace.getConfiguration('componentFolder')
+
         const name = await vscode.window.showInputBox({
           placeHolder: 'Name (of component/folder)'
         })
         if (!name) return
-        const ext = await vscode.window.showInputBox({
-          placeHolder: 'File extension (eg: tsx, ts, jsx, js)'
-        })
+        const ext =
+          config.get('fileExt') ||
+          (await vscode.window.showInputBox({
+            placeHolder: 'File extension (eg: tsx, ts, jsx, js)'
+          }))
         if (!ext) return
-        const output = createComponentFolder({ path, name, ext })
+
+        const templates = config.get('templates')
+        const mainFile = config.get('mainFile')
+
+        const opts = { path, name, ext } as Parameters<
+          typeof createComponentFolder
+        >[0]
+        if (templates) opts.templates = templates as { [key: string]: string }
+        if (mainFile) opts.mainFile = mainFile as string
+
+        const output = createComponentFolder(opts)
         await showFile(output.paths.mainFile)
       }
     )

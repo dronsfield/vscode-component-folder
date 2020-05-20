@@ -1,4 +1,5 @@
 import * as vscode from 'vscode'
+import * as pathLib from 'path'
 import { convertFileToFolder, createComponentFolder } from 'file-structurer'
 
 async function showFile(path: string) {
@@ -37,14 +38,27 @@ export function activate(context: vscode.ExtensionContext) {
           }))
         if (!ext) return
 
-        const templates = config.get('templates')
-        const mainFile = config.get('mainFile')
+        const templates = config.get('templates') as { [key: string]: string }
+        const mainFile = config.get('mainFile') as string
+
+        const wsFile = vscode.workspace.workspaceFile?.fsPath
+        const wsFileFolder = wsFile && pathLib.dirname(wsFile)
+        const wsFirstFolder = vscode.workspace.workspaceFolders?.[0]?.uri.fsPath
+        const templateRoot = wsFileFolder || wsFirstFolder
+
+        if (templates) {
+          Object.keys(templates).forEach((key) => {
+            const templatePath = templates[key]
+            if (!templatePath?.startsWith('/') && templateRoot)
+              templates[key] = pathLib.join(templateRoot, templatePath)
+          })
+        }
 
         const opts = { path, name, ext } as Parameters<
           typeof createComponentFolder
         >[0]
-        if (templates) opts.templates = templates as { [key: string]: string }
-        if (mainFile) opts.mainFile = mainFile as string
+        if (templates) opts.templates = templates
+        if (mainFile) opts.mainFile = mainFile
 
         const output = createComponentFolder(opts)
         await showFile(output.paths.mainFile)

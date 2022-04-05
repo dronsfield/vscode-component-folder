@@ -1,5 +1,9 @@
 # Component Folder (VS Code Extension)
 
+[![version badge](https://vsmarketplacebadge.apphb.com/version/dronz.vscode-component-folder.svg)](https://marketplace.visualstudio.com/items?itemName=dronz.vscode-component-folder)
+[![installs badge](https://vsmarketplacebadge.apphb.com/installs/dronz.vscode-component-folder.svg)](https://marketplace.visualstudio.com/items?itemName=dronz.vscode-component-folder)
+
+
 This extension adds some quality-of-life improvements when working with "component folders" - aka a file structure like this:
 
 ```

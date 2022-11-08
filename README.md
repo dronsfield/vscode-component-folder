@@ -43,6 +43,50 @@ Adds a new context menu option for `.ts` / `.tsx` / `.js` / `.jsx` fiiles in the
 
 ![Convert To Component Folder animation](images/ConvertToComponentFolder.gif)
 
+## Config
+
+### Custom templates
+
+You can set up custom template files for this extension to generate. Use the command palette to `Open User Settings (JSON)` and add something like this:
+
+```
+"componentFolder.templates": {
+  "{{name}}.{{ext}}": "/Users/yourname/code/_templates/component.{{ext}}",
+  "index.{{ext}}": "/Users/yourname/code/_templates/index.{{ext}}",
+  "{{name}}.module.css": "/Users/yourname/code/_templates/component.module.css",
+}
+```
+
+Create some template files at the paths you specify in the config, you can use `{{name}}` and it will be replaced by the name of the component during creation, eg here's a template for a component that imports a CSS module:
+
+```
+import React from 'react';
+import styles from '{{name}}.module.css';
+
+const {{name}} = props => {
+  const {foo} = props;
+  return <div className={styles.example}>{'{{name}}'}</div>;
+};
+
+export default {{name}};
+```
+
+You can add as many template files as you like.
+
+### Default file extension
+
+```
+"componentFolder.fileExt": "tsx"
+```
+
+### Default file to open after creation
+
+Only useful in addition to custom template config, the value for this should match a key from the `componentFolder.templates` config
+
+```
+"componentFolder.mainFile": "{{name}}.{{ext}}"
+```
+
 ## Links
 
 - [View this extension in the Visual Studio Marketplace](https://marketplace.visualstudio.com/items?itemName=dronz.vscode-component-folder&ssr=false#overview)
